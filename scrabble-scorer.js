@@ -82,8 +82,6 @@ let scrabbleScorer = function(wordInput){
    return score;
 };
 
-
-
 const scoringAlgorithms = [
    {
       name: 'Simple Score',
