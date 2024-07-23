@@ -37,7 +37,7 @@ function oldScrabbleScorer(word) {
 let wordInput; //initialized outside of the function so scope isn't limited
 
 function initialPrompt() {
-   wordInput = input.question("Let's play some scrabble! Enter a word:");
+   wordInput = input.question("Let's play some scrabble! Enter a word:"); ///***ADD A SPACE HERE */
         return wordInput;
 }; 
 
@@ -119,21 +119,22 @@ if (numInput <= 2) {
 
 //wanted to keep the code mutable in this section in case the scoring algorithms change.  Template literals keep it mutable.  No hard coded values.
 
+//"in" iterates over the values of a key
 
 function transform(oldPointsObj) {
-   let result = {}; //an empty object is created to store the data
-  for (let number in oldPointsObj) {
-    let letterArrays = oldPointsObj[number]; //using a for..in loop in order to accesss the keys and values in the oldPointsObj properties and map it to the new one.
-    for(let value in letterArrays){
-      let letters = letterArrays[value];
-      result[letters.toLowerCase()] = Number(number); //check the letter of the user input against thbe point value by looping the input against object
+   let newPointsObj = {}; //an empty object is created to store the data
+  for (let i in oldPointsObj) { //grab each array at index position
+    let letterArrays = oldPointsObj[i]; 
+    for(let j in letterArrays){ //loop through array of letters we got at each index. make the value = the number the outer loop is on (i)
+      let letters = letterArrays[j]; //letters is assigned the value at the current index of 'letterArrays'.
+    newPointsObj[letters.toLowerCase()] = Number(i);  //Create new object, allow the letters to be keys, and number to be values
       
-    }
+    }  //each index of j will be a different letter
   }
-  return result;
+  return newPointsObj; //returns the  newPointsObj' object, which contains the transformed data.
 };
 
-
+//functions, formatting
 
 function runProgram() {
    initialPrompt();
