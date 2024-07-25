@@ -37,7 +37,7 @@ function oldScrabbleScorer(word) {
 let wordInput; //initialized outside of the function so scope isn't limited
 
 function initialPrompt() {
-   wordInput = input.question("Let's play some scrabble! Enter a word:"); ///***ADD A SPACE HERE */
+   wordInput = input.question("Let's play some scrabble!\n\nEnter a word to score: ");
         return wordInput;
 }; 
 
@@ -84,12 +84,12 @@ let scrabbleScorer = function(wordInput){
 
 const scoringAlgorithms = [
    {
-      name: 'Simple Score',
+      name: 'Simple',
       description: 'Each letter is worth 1 point',
       scorerFunction: simpleScorer
    },
    {
-      name: 'Bonus Vowels',
+      name: 'Vowel Bonus',
       description: 'Vowels are 3 pts, consonants are 1 pt.',
       scorerFunction: vowelBonusScorer
    },
@@ -101,7 +101,7 @@ const scoringAlgorithms = [
 ];
 
 function scorerPrompt() {
-let numInput = Number(input.question(`Choose which scoring algorithm you'd like to use!
+let numInput = Number(input.question(`Which scoring algorithm you'd like to use?
   
 0- ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}
 1- ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}
@@ -127,7 +127,7 @@ function transform(oldPointsObj) {
     let letterArrays = oldPointsObj[i]; 
     for(let j in letterArrays){ //loop through array of letters we got at each index. make the value = the number the outer loop is on (i)
       let letters = letterArrays[j]; //letters is assigned the value at the current index of 'letterArrays'.
-    newPointsObj[letters.toLowerCase()] = Number(i);  //Create new object, allow the letters to be keys, and number to be values
+    newPointsObj[letters.toLowerCase()] = Number(i);  //Fill the newPointsObj, allow the letters to be keys, and number to be values
       
     }  //each index of j will be a different letter
   }
